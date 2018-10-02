@@ -1,33 +1,51 @@
+<center><h1> Eat those burgers</h1></center>
+
+<center><h2>Order any type of burger</h2></center>
+<center><img src="assets\image\burgers.jpeg" class="center" style="height:275px;width:275px;margin:auto"></center>
+
+
 <div class="container">
-    <section id="page-name">
-            <img id="main-image" src="https://media.istockphoto.com/photos/double-cheese-and-bacon-cheeseburger-picture-id511484502?k=6&m=511484502&s=612x612&w=0&h=2d8oTGH_E7KHkd4TIdftWIxjLsBP3CfdF44zy65FD0o=" width="480" height="326" frameBorder="0" class="giphy-embed" allowFullScreen></img>
-            <h1>Eat-Da-Buger</h1>
-    </section>
+    <div class="row burgersArea" style="text-align:center">
+        <div class="col1" style="float:left; width:50%;">
 
-    <section class="row">
-        <div class="col-md-7 col-left">
-            <table>
-                {{#each burgers}}
-                    {{#unless devoured}}
-                        {{> burgers/burger-block}}
-                    {{/unless}}
-                {{/each}}
-            </table>
-        </div>
-        <div class="col-md-5 col-right">
-            {{#each burgers}}
-                {{#if devoured}}
-                    <div>{{id}}. {{burger_name}}</div>
-                {{/if}}
-            {{/each}}        
-        </div>          
-    </section>
+            {{#each burgers}} {{#unless devoured}}
+            <section>
+                {{!--
+                <p>{{this.id}}. Burger: {{this.burger_name}} --}} {{!--
+                    <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                        --}} {{!-- <button id="devourBtn" data-id="{{id}}" data-devoured="{{devoured}}" type="submit">Devour
+                            It!</button>
+                        --}} {{> burgers/burger devoured=true}} {{!-- </form> --}}
 
-    <form class="create-form">
-        <div class="form-group">
-            <label for="name"></label>
-            <textarea id="name" name="burger-name" rows="2" cols="40" placeholder="What do you want to eat?"></textarea>
+                {{!-- </p> --}}
+
+            </section>
+            {{/unless}} {{/each}}
         </div>
-        <button type="submit">Add Burger</button>
-    </form>     
+
+
+
+
+        <div class="col2" style="float:right; width:50%;">
+
+            {{#each burgers}} {{#if devoured}}
+            <section>
+                {{> burgers/burger devoured=false}} {{!--
+                <p>Id: {{this.id}}</p> --}} {{!--
+                <p>Burger: {{this.burger_name}}</p> --}}
+
+            </section>
+            {{/if}} {{/each}}
+        </div>
+    </div>
+
+    <div class="col12" style="text-align:center" style="position:fixed">
+        <form class="create-form">
+            <label for="burg">Add Burger Below</label>
+            <br>
+            <input type="text" id="burgerText" name="burger_name"></input>
+            <br>
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+    </div>
 </div>
